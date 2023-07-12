@@ -46,11 +46,12 @@ public class UserServiceImp implements UserService {
         return userRepository.findAll();
     }
 
+
     @Override
     public void saveUser(User user) {
         User userFromDB = userRepository.findByUsername(user.getUsername());
-
-        if (userFromDB == null || user.getRoles() == null) {
+        System.out.println(user.getRoles());
+        if (userFromDB == null && user.getRoles() == null) {
             user.setRoles(Set.of(roleRepository.getById(2L)));
         }
         if (user.getPassword().equals("") && userFromDB != null) {
@@ -58,6 +59,7 @@ public class UserServiceImp implements UserService {
         } else {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
         }
+        System.out.println(user.getRoles());
         userRepository.save(user);
     }
 

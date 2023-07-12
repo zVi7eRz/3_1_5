@@ -29,6 +29,18 @@ public class User implements UserDetails {
     @ManyToMany(fetch = FetchType.LAZY)
     private Set<Role> roles;
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", age=" + age +
+                ", roles=" + roles +
+                '}';
+    }
 
     public Long getId() {
         return id;
